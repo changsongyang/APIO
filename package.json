@@ -20,6 +20,7 @@
     "mysql": "^2.12.0",
     "nodemailer": "^2.7.2",
     "promise-mysql": "^3.0.1",
+    "qcloudapi-sdk": "^0.1.5",
     "qs": "^6.4.0",
     "require-directory": "^2.1.1",
     "sequelize": "^3.30.4"
