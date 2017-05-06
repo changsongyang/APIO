@@ -32,7 +32,7 @@ export let SendEmail = {
 
 const AliyunAccessKey = {
   accessKeyId: 'LTAI8MasiW7Z8CNX',
-  accessKeySecret: 'rEyz0zgJgQPmzdSO8zTLgFt1nUcS1v'
+  accessKeySecret: 'rEyz0zgJgQPmzdSO8zTLgFt1nUcS1v '
 }
 
 const QcloudAccessKey = {
