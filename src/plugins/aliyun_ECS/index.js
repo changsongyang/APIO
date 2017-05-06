@@ -31,7 +31,7 @@ export let List = async () => {
 
   let pa = {
     Action: 'DescribeInstances', // 操作接口名，系统规定参数
-    RegionId: 'cn-qingdao' // 地域
+    RegionId: 'cn-hongkong' // 地域
   }
 
   let params = Object.assign(CommonParams, pa)
