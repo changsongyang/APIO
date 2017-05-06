@@ -12,5 +12,8 @@ router
   .post('/api/:name', controllers.api.Post)
   .put('/api/:name', controllers.api.Put)
   .del('/api/:name', controllers.api.Delect)
+  .post('/ecs/:action', controllers.ecs.default)
+  .post('/cvm/:action', controllers.cvm.default)
+  .post('/vultr/:action', controllers.vultr.default)
 
 module.exports = router
