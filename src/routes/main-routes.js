@@ -15,5 +15,6 @@ router
   .post('/ecs/:action', controllers.ecs.default)
   .post('/cvm/:action', controllers.cvm.default)
   .post('/vultr/:action', controllers.vultr.default)
+  .get('/captcha', controllers.captcha.get)
 
 module.exports = router
