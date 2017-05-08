@@ -61,3 +61,60 @@ export let getJsonLength = (jsonData) => {
   }
   return arr.length
 }
+
+export let instanceName=(data)=>{
+	if(/^http[s]?:\/\//.test(data)){
+		return false
+	}
+	if(/^[\u4e00-\u9fa5|a-zA-Z][\d\w._-]{1,127}$/.test(data)){
+		return true
+	}
+	return false
+}
+export let instanceDescription=(data)=>{
+	if(/^http[s]?:\/\//.test(data)){
+		return false
+	}
+	if(data.length>256){
+		return false
+	}
+	return true
+}
+export let instancePassword=(data)=>{
+	if(data.length<8||data.length>30){
+		return false
+	}
+	if(/[a-z]/g.test(data)&&/[A-Z]/g.test(data)&&/[\d]/g.test(data)){
+		return true
+	}
+
+	return false
+}
+export let instanceHostName=(data,windowsPlatform)=>{
+	if(windowsPlatform){
+		 if(data.length>15||data.length<2){
+		 	return false
+		 }
+		 if(data.indexOf('.')>-1){
+		 	return  false
+		 }
+	
+		 if(/^\d*$/gi.test(data)){
+		 	return  false
+		 }
+	}else {
+		if(data.length>30||data.length<2){
+			return false
+		 }
+	};
+	begin = data.substring(0,1);
+	end = data.substring(data.length-1,1);
+	if(begin === '.' || begin.substring(0,1) === '-' || end === '.' || end.substring(0,1) === '-' ){
+		return false
+	}
+	if(data.indexOf('..')>-1||data.indexOf('--')>-1){
+		return false
+	}
+	return true
+
+}
