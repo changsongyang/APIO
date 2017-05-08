@@ -15,7 +15,9 @@ let restartECSInstance = async (config) => {
   return restart()
 }
 let changeECSInstance = async (config) => {
-  return change(config)
+  console.log(config)
+   let config2=JSON.parse(config)
+  return change(config2)
 }
 export default (ctx) => {
   switch (ctx.params.action) {
@@ -32,7 +34,7 @@ export default (ctx) => {
     		return restartECSInstance(ctx.request.body.config).then(result => { ctx.body = result })
     };
     case 'change':{
-    		return changeECSInstance(ctx.request.body.fields.config).then(result => { ctx.body = result })
+    		return changeECSInstance(ctx.request.body.fields).then(result => { ctx.body = result })
     }
   }
 }

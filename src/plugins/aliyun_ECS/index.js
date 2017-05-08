@@ -1,7 +1,7 @@
 import Api from '../../lib/api'
 import moment from 'moment-timezone'
 import Signature from './signature'
-
+import {instanceName,instanceDescription,instancePassword,instanceHostName} from  '../../tool/Common.js'
 import {
   AliyunECS as AliyunECSConfig,
   System as SystemConfig
@@ -181,6 +181,10 @@ export let restart = async () => {
 //change instance
 export let change = async (config) => {
   let option=['InstanceName','Description','Password','HostName','UserData'] ;
+  let check=[instanceName,instanceDescription,instancePassword,instanceHostName,function(data){
+    return data
+  }]
+  let errorinfo=["实例名称不合法","实例描述不合法","实例密码不合法","实例主机名不合法"]
   let CommonParams = {
     Format: 'JSON', // 返回值的类型，支持JSON与XML。默认为XML
     Version: AliyunECSConfig.Version, // API版本号
@@ -195,10 +199,28 @@ export let change = async (config) => {
     Action: 'ModifyInstanceAttribute', // 操作接口名，系统规定参数
     InstanceId: 'i-j6chfpu32ir85qouk6fv' // 地域
   };
+  let iswindow=false
   config=JSON.parse(config)
   for(let i=0;i<option.length;i++){
     if(config[option[i]]){
-      pa[option[i]]=config[option[i]]
+      if(i==3){
+         if(check[i](config[option[i]],iswindow)){
+           pa[option[i]]=config[option[i]]
+         }else{
+          return {
+            errInfo: errorinfo[i]
+          }
+        }
+      }
+
+      if(check[i](config[option[i]])){
+        pa[option[i]]=config[option[i]]
+      }else{
+        return {
+          errInfo: errorinfo[i]
+        }
+      }
+      
     }
   }
   let params = Object.assign(CommonParams, pa)
