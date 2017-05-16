@@ -90,3 +90,25 @@ export const BaiduBCE = {
   AccessKeyID: '',
   SecretAccessKey: ''
 }
+
+const QcloudAccessKey = {
+  SecretId: '',
+  SecretKey: ''
+}
+
+export const QcloudCOS = {
+  SecretId: QcloudAccessKey.SecretId,
+  SecretKey: QcloudAccessKey.SecretKey,
+  appid: 1251007030, // APPID 必填参数
+  buckets: [
+    {
+      bucket: '', // bucketName 必填参数 公共读库
+      region: 'sh' // 地域信息 必填参数 华南地区填gz 华东填sh 华北填tj
+    },
+    {
+      bucket: 'xxxprivate', // bucketName 必填参数 私有库
+      region: 'sh', // 地域信息 必填参数 华南地区填gz 华东填sh 华北填tj
+      url: 'https://yizhioaprivate-1251007030.cossh.myqcloud.com'
+    }
+  ]
+}
